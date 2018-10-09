@@ -1,6 +1,6 @@
 {
   "name": "listr-simple-tree-renderer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Listr renderer with simple tree support (non concurrent tasks)",
   "license": "MIT",
   "repository": "pionl/listr-simple-tree-renderer",

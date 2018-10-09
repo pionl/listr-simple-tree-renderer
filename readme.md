@@ -56,6 +56,13 @@ Default: `true`
 
 Append every indention based on corresponding level task.
 
+### taskIcon
+
+Type: `string`
+Default: `pointer`
+
+Icon that will be displayed next to the task name. Icon list in [figures](https://github.com/sindresorhus/figures/blob/master/index.js) package
+
 ## Spinner
 
 Need to show spinner? Use custom rendering which will clear the output before changing task.
