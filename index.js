@@ -12,19 +12,31 @@ const renderHelper = (task, event, options, level) => {
 			return
 		}
 
-		const icon = chalk.blue(figures.pointer);
-		log(`${icon} ${task.title}`);
+		log(utils.format(task.title, (title) => {
+            const icon = chalk.blue(figures.pointer);
+            return `${icon} ${title}`
+        }));
 
 		if (task.isSkipped()) {
-			const message = task.output ? ` ${task.output}` : ''
-			log(utils.indentString(1, chalk.gray(`${figures.arrowLeft} [SKIPPED]${message}`)));
+			const message = '[SKIPPED]' + (task.output ? ` ${task.output}` : '')
+			log(utils.indentString(1, utils.format(
+                message,
+                (message) => {
+					return chalk.gray(`${figures.arrowLeft} ${message}`)
+                }
+			)));
 		}
 		return
 	}
 
 	if (event.type === 'DATA') {
-		const icon = task.hasFailed() ? chalk.red(figures.cross) : chalk.gray(figures.arrowRight)
-		log(utils.indentString(1, icon + ' ' + chalk.gray(`${event.data}`)))
+        log(utils.indentString(1, utils.format(
+            event.data,
+            (data) => {
+                const icon = task.hasFailed() ? chalk.red(figures.cross) : chalk.gray(figures.arrowRight)
+                return icon + ' ' + chalk.gray(`${event.data}`)
+            }
+        )));
 		return
 	}
 };

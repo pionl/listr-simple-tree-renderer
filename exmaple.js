@@ -2,6 +2,8 @@
 const delay = require('delay');
 const Listr = require('listr');
 const renderer = require('./');
+const figures = require('figures');
+const chalk = require('chalk');
 
 const tasks = new Listr([
     {
@@ -23,6 +25,14 @@ const tasks = new Listr([
                 {
                     title: 'Checking remote history 4',
                     task: (context, task) => task.skip()
+                },
+                {
+                    title: 'Output can be function',
+                    task: (context, task) => {
+                        task.output = () => {
+                            return `${figures.tick} Custom render`
+                        }
+                    }
                 }
             ], {concurrent: false});
         }

@@ -26,7 +26,15 @@ const list = new Listr([
 	{
 		title: 'foo',
 		task: () => Promise.resolve('bar')
-	}
+	},
+	{
+        title: 'Output can be function to change text',
+        task: (context, task) => {
+            task.output = () => {
+                return `${figures.tick} Custom render`
+            }
+        }
+    }
 ], {
 	renderer: SimpleTreeRenderer
 });
