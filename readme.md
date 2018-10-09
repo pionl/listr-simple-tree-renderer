@@ -65,34 +65,37 @@ const ElegantSpinner = require('elegant-spinner')
  * Do not output any data within promise task.
  *
  * @param {string} title
- * @param {Promise} promiseTask
+ * @param {Function} promiseTask
  * @return {Promise<any>}
  */
-function showSpinner (title, promiseTask) {
-    return new Promise((resolve, reject) => {
-        const spinner = ElegantSpinner()
+module.exports = async function (title, promiseTask) {
+    function cancel () {
+        clearInterval(interval)
+        logUpdate.clear()
+    }
 
-        try {
-            // Show the spinner
-            const interval = setInterval(() => {
-                logUpdate(spinner() + ' ' + title)
-            }, 100)
+    const spinner = ElegantSpinner()
 
-            promiseTask.then((response) => {
-                clearInterval(interval)
-                logUpdate.clear()
+    // Show the spinner
+    const interval = setInterval(() => {
+        logUpdate(spinner() + ' ' + title)
+    }, 100)
 
-                resolve(response)
-            })
-        } catch (e) {
-            reject(e)
-        }
-    })
+    try {
+        const response = await promiseTask()
+        cancel()
+        return response
+    } catch (e) {
+        cancel()
+        throw e
+    }
 }
 
 task = {
     title: 'test',
-    task: (context, task) => showSpinner('Loading', new Promise(...)).then((title) => {
+    task: (context, task) => showSpinner('Loading', async () => {
+    	return await somethingThatWillReturnTitle()
+    }).then((title) => {
         task.output = title
     })
 }
