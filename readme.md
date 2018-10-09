@@ -4,16 +4,19 @@
 
 ![screenshot.gif](screenshot.gif) 
 
-Shows simple task list in non-concurrent mode to support long task list with collapsed items.
+> Shows simple task list in non-concurrent mode to support long task list (with visible subtask list).
 
-Inspired by [listr-verbose-renderer](https://github.com/SamVerschueren/listr-verbose-renderer) and [listr-update-renderer](https://github.com/SamVerschueren/listr-update-renderer)
+> Inspired by [listr-verbose-renderer](https://github.com/SamVerschueren/listr-verbose-renderer) and [listr-update-renderer](https://github.com/SamVerschueren/listr-update-renderer)
+> 
+> This renderer supports non-TTY environments.
+> 
+> Task spinners are not used to allow rendering tree with history.
 
 ## Install
 
 ```
 $ npm install --save listr-simple-tree-renderer
 ```
-
 
 
 ## Usage
@@ -41,10 +44,6 @@ const list = new Listr([
 
 list.run();
 ```
-
-> This renderer supports non-TTY environments.
-> 
-> Task spinners are not used to allow rendering tree with history.
 
 
 ## Options
