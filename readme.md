@@ -6,7 +6,6 @@
 
 * Shows simple task list in non-concurrent mode to support long task list (with visible subtask list).
 * Inspired by [listr-verbose-renderer](https://github.com/SamVerschueren/listr-verbose-renderer) and [listr-update-renderer](https://github.com/SamVerschueren/listr-update-renderer)
-* This renderer supports non-TTY environments.
 * Task spinners are not used to allow rendering tree with history.
 * Why this package when we can use [listr-update-renderer](https://github.com/SamVerschueren/listr-update-renderer/issues/14)?
 

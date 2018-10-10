@@ -76,7 +76,7 @@ class SimpleTreeRenderer {
 	}
 
 	static get nonTTY () {
-		return true;
+		return false;
 	}
 
 	render () {
